@@ -42,7 +42,7 @@ with st.sidebar:
     st.header("⚙️ 設定")
     model_choice = st.selectbox(
         "選擇LLM模型",
-        ["qwen2.5:1.5b", "local-ollama", "gpt-3.5-turbo"],
+        ["qwen2.5:0.5b", "local-ollama", "gpt-3.5-turbo"],
         help="建議 MX110 顯卡使用 1.5b 模型以避免崩潰"
     )
     temperature = st.slider("Temperature (創意度)", 0.0, 1.0, 0.7)

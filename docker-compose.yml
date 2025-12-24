@@ -13,7 +13,7 @@ services:
       - app-network
     environment:
       - USE_LOCAL_MODEL=true
-      - LLM_MODEL=qwen2.5:1.5b  # 建議改為 1.5b 以適配 MX110
+      - LLM_MODEL=qwen2.5:0.5b  # 建議改為 1.5b 以適配 MX110
 
   ollama:
     image: ollama/ollama:latest
