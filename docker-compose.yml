@@ -1,0 +1,49 @@
+
+services:
+  app:
+    build: .
+    container_name: manufacturing-ai-app
+    ports:
+      - "8501:8501"
+    env_file:                    
+      - .env
+    depends_on:
+      - ollama
+    networks:
+      - app-network
+    environment:
+      - USE_LOCAL_MODEL=true
+      - LLM_MODEL=qwen2.5:1.5b  # 建議改為 1.5b 以適配 MX110
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    # --- 啟用 GPU 存取 (NVIDIA) ---
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    # -----------------------------
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+      - OLLAMA_KEEP_ALIVE=30m
+      - OLLAMA_NOPRUNE=true          # 防止主動卸載模型
+      - OLLAMA_NUM_PARALLEL=1        # 強制序列處理，避免 MX110 同時處理多個請求導致崩潰
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  ollama_data:
+    driver: local

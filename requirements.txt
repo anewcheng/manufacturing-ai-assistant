@@ -1,0 +1,8 @@
+streamlit
+pandas
+numpy
+python-dotenv
+requests
+markdown
+scikit-learn
+matplotlib>=3.5.0
