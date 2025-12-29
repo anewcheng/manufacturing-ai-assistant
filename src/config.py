@@ -11,7 +11,7 @@ USE_LOCAL_MODEL = os.getenv("USE_LOCAL_MODEL", "false").lower() == "true"
 
 # 本地模型 (ollama 或 vLLM)
 LOCAL_MODEL_PATH = os.getenv("LOCAL_MODEL_PATH", "models/codellama_finetuned")
-LOCAL_API_URL = os.getenv("LOCAL_API_URL", "http://localhost:8000")
+LOCAL_API_URL = os.getenv("LOCAL_API_URL", "http://ollama:11434")
 
 # 單獨指定本地模型名，新增一個：
 # LOCAL_MODEL_NAME = os.getenv("LLM_MODEL", LLM_MODEL)
